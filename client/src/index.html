@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link rel="icon" href="/img/16x16.png" sizes="16x16">
+  <link rel="icon" href="/img/32x32.png" sizes="32x32">
+  <link rel="stylesheet" type="text/css" href="<%= grunt.config.get('pkg.name') %>.css"/>
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular.route.min.js"></script>
+  <script type="text/javascript" src="<%= grunt.config.get('pkg.name') %>.js"></script>
+  <title>CardCast</title>
+</head>
+<body ng-controller="AppCtrl">
+  <div class="container" ng-view></div>
+</body>
+</html>
