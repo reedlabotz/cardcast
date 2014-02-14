@@ -36,7 +36,7 @@ module.exports = function(grunt) {
         src: { 
             js: ['src/**/*.js', '<%= distdir %>/templates/**/*.js'], 
             jsWatch: ['src/**/*.js'], 
-            html: ['src/index.html'], 
+            html: ['src/index.html','src/receiver.html'], 
             tpl:  {
                 app: ['src/app/**/*.tpl.html'] 
             }, 
@@ -73,6 +73,13 @@ module.exports = function(grunt) {
             index:  {
                 src: ['src/index.html'] ,
                 dest: '<%= distdir %>/index.html' ,
+                options:  {
+                    process: true
+                }
+            },
+            receiver:  {
+                src: ['src/receiver.html'] ,
+                dest: '<%= distdir %>/receiver.html' ,
                 options:  {
                     process: true
                 }
