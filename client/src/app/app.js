@@ -13,12 +13,17 @@ angular.module('app').controller('AppCtrl', ['$scope','chromecast', function($sc
 }]);
 
 angular.module('app').controller('ReceiverCtrl', ['$scope','chromecast', function($scope, chromecast) {
-    $scope.id="Loading...";
+    $scope.link = "Loading...";
     chromecast.initializeReceiver(function() {
-        var peer = new Peer({key: 'z5y7lsci3p4lsor'});
+        var peerId = "";
+        var possible = "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789";
+        for( var i=0; i < 5; i++ ) {
+            peerId += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        var peer = new Peer(peerId, {key: 'z5y7lsci3p4lsor'});
         peer.on('open', function() {
             $scope.$apply(function() {
-                $scope.id = peer.id;
+                $scope.link = "http://cards.reedlabotz.com/#" + peer.id;
             });
         });
     });
