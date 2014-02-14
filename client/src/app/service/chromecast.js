@@ -29,7 +29,12 @@ angular.module('app').factory('chromecast',function() {
         }, function(e) {
             console.log("init error", e);
         });
-    }; 
+    };
+    var initializeReceiver = function(callback) {
+        var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+        castReceiverManager.start();
+        callback();
+    };
     
     var chromecastService = {
         connect: function(callback) {
@@ -37,6 +42,9 @@ angular.module('app').factory('chromecast',function() {
         },
         sendMessage: function(message) {
             session.sendMessage('urn:x-cast:com.reedlabotz.cards', message);
+        },
+        initializeReceiver: function(callback) {
+            initializeReceiver(callback);
         }
     };
     return chromecastService;
