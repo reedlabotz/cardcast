@@ -24,6 +24,4 @@ class ChromecastService
     chrome.cast.requestSession (@session) =>
       callback()
     , noop
-      
-    
-      
+  

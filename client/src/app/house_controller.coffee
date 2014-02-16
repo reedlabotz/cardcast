@@ -1,7 +1,10 @@
+#<< cardcast/player
+
 class HouseCtrl
   @$inject: ['$scope', 'chromecast']
   constructor: (@$scope, @chromecast) ->
-    $scope.loading = true
+    @$scope.loading = true
+    @$scope.players = []
     @chromecast.initializeReceiver () =>
       possible = "ABCDEFGHJKLMNPQRSTUVWXYZ123456789"
       peerId = ""
@@ -12,3 +15,12 @@ class HouseCtrl
         @$scope.$apply () =>
           $scope.id = @peer.id
           @$scope.loading = false
+      @peer.on 'connection', (conn) =>
+        console.log 'new player', conn
+        player = new Player conn.peer.id
+        @$scope.$apply () =>
+          @$scope.players.push player
+        setInterval () ->
+          console.log 'sending hi'
+          conn.send 'hi player'
+        , 500
