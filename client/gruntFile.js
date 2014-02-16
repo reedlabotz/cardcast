@@ -2,17 +2,19 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-recess');
     grunt.loadNpmTasks('grunt-html2js');
+    grunt.loadNpmTasks('grunt-coffee-toaster');
 
     // Default task.
     grunt.registerTask('default', ['jshint','build']);
-    grunt.registerTask('build', ['clean','html2js','concat','recess:build','copy:img','copy:vendor']);
-    grunt.registerTask('release', ['prodconfig','clean','html2js','uglify','jshint','concat:index', 'recess:min','copy:img','copy:vendor']);
+    grunt.registerTask('build', ['clean','html2js','toaster','concat','recess:build','copy:img','copy:vendor']);
+    grunt.registerTask('release', ['prodconfig','clean','html2js','toaster','uglify','jshint','concat:index', 'recess:min','copy:img','copy:vendor']);
 
     // Print a timestamp (useful for when watching)
     grunt.registerTask('timestamp', function() {
@@ -33,9 +35,9 @@ module.exports = function(grunt) {
             '<%= pkg.homepage ? " * " + pkg.homepage + "\\n" : "" %>' + 
             ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>;\n' + 
             ' * Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %>\n */\n', 
-        src: { 
-            js: ['src/**/*.js', '<%= distdir %>/templates/**/*.js'], 
-            jsWatch: ['src/**/*.js'], 
+        src: {
+            coffee: ['src/**/*.coffee'],
+            js: ['<%= distdir %>/src.js', '<%= distdir %>/templates/**/*.js'], 
             html: ['src/index.html','src/receiver.html'], 
             tpl:  {
                 app: ['src/app/**/*.tpl.html'] 
@@ -52,6 +54,14 @@ module.exports = function(grunt) {
                 files: [{ dest: '<%= distdir %>/js', src : '**', expand: true, cwd: 'vendor/' }]
             }
         }, 
+        toaster: {
+            dist: {
+                folders: { "src/app": "cardcast" },
+                release: "<%= distdir %>/src.js",
+                minify: false,
+                packaging: false
+            }
+        },
         html2js: { 
             app:  {
                 options:  {
@@ -114,11 +124,11 @@ module.exports = function(grunt) {
         },
         watch:{
             all: {
-                files:['<%= src.jsWatch %>', '<%= src.lessWatch %>', '<%= src.tpl.app %>', '<%= src.html %>'],
+                files:['<%= src.coffee %>', '<%= src.lessWatch %>', '<%= src.tpl.app %>', '<%= src.html %>'],
                 tasks:['default','timestamp']
             },
             build: {
-                files:['<%= src.jsWatch %>', '<%= src.lessWatch %>', '<%= src.tpl.app %>', '<%= src.html %>'],
+                files:['<%= src.coffee %>', '<%= src.lessWatch %>', '<%= src.tpl.app %>', '<%= src.html %>'],
                 tasks:['build','timestamp']
             }
         },

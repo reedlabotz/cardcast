@@ -9,10 +9,15 @@
     <script src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
     <script src="http://cdn.peerjs.com/0.3/peer.js"></script>
   </head>
-  <body ng-controller="ReceiverCtrl"
+  <body ng-controller="HouseCtrl"
         class="receiver">
     <img src="https://raw2.github.com/reedlabotz/euchre/master/client/src/img/cards.png">
     <h1>Card Cast</h1>
-    <div class="gameId">{{ link }}</div>
+    <div ng-if="loading"
+         class="gameId">Loading...</div>
+    <div ng-if="!loading"
+         class="gameId">
+      http://cards.reedlabotz.com/#<strong>{{ id }}</strong>
+    </div>
   </body>
 </html>
