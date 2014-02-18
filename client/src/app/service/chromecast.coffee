@@ -1,4 +1,6 @@
 class ChromecastService
+  constructor: (@apiKey) ->
+    
   connect: (callback) ->
     initializeCastApi callback
 
@@ -14,7 +16,7 @@ class ChromecastService
         initializeCastApi callback
       , 200
 
-    sessionRequest = new chrome.cast.SessionRequest '17F0F24F'
+    sessionRequest = new chrome.cast.SessionRequest @apiKey
     apiConfig = new chome.cast.ApiConfig sessionRequest, noop,() ->
       receiverListener callback
 

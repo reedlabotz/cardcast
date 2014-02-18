@@ -10,15 +10,19 @@
     <script src="http://cdn.peerjs.com/0.3/peer.js"></script>
   </head>
   <body ng-controller="HouseCtrl"
-        class="receiver">
+        class="house">
     <img src="https://raw2.github.com/reedlabotz/euchre/master/client/src/img/cards.png">
     <h1>Card Cast</h1>
     <div ng-if="loading"
          class="gameId">Loading...</div>
     <div ng-if="!loading"
-         class="gameId">
+         class="game-id">
       http://cards.reedlabotz.com/#<strong>{{ id }}</strong>
     </div>
-    <div>{{ players.length }} players connected</div>
+    <div class="players">
+      <div class="player-name"
+           ng-repeat="p in players"
+           ng-if="p.name">{{ p.name }}</div>
+    </div>
   </body>
 </html>

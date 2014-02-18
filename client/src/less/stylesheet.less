@@ -1,23 +1,18 @@
-@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
-
-@dark: #ccc;
-@light: #ddd;
-@white: #fff;
-@black: #000;
+@green: #3CB371;
+@darkGreen: darken(@green, 30%);
 
 html, body {
   margin: 0;
   padding: 0;
-  background: @light;
-  font-family: @font-family-sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
 }
 
-.receiver {
+.house {
   color: #fff;
-  background: -webkit-radial-gradient(center, ellipse cover, #72AF00 0%,#124F00 100%);
+  background: -webkit-radial-gradient(center, ellipse cover, @green 0%, @darkGreen 100%);
   text-align: center;
   padding: 2em;
 
@@ -25,7 +20,73 @@ html, body {
     font-size: 4em;
   }
 
-  .gameId {
+  .game-id {
     font-size: 2em;
+    line-height: 3em;
+  }
+
+  .player-name {
+    background: #fff;
+    padding: 10px;
+    font-size: 2em;
+    color: #666;
+    box-shadow: 0 0 10px 2px fade(@darkGreen, 90%);
+    display: inline-block;
+    margin: 10px;
+  }
+}
+
+.player {
+  background: #eee;
+  padding: 10px;
+
+  .loading {
+    background: @green;
+    padding: 15px;
+    color: #fff;
+    text-align: center;
+    line-height: 48px;
+    width: 225px;
+    height: 115px;
+    margin: auto;
+    box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .loader{
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, .2);
+    border-width: 40px;
+    border-style: double;
+    border-color:transparent  #fff;
+    
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    
+    -webkit-transform-origin:  50% 50%;
+    transform-origin:  50% 50% ;
+    -webkit-animation: loader 2s linear infinite;
+    animation: loader 2s linear infinite;
+  }
+  @-webkit-keyframes loader{
+    0%{-webkit-transform:rotate(0deg);}
+    100%{-webkit-transform:rotate(360deg);}
+  }
+  @keyframes loader{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+  }
+
+  .container {
+    background: #fff;
+    padding: 10px;
   }
 }

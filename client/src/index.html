@@ -12,7 +12,14 @@
     <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
     <title>CardCast</title>
   </head>
-  <body ng-controller="PlayerCtrl">
-    <div class="container" ng-view></div>
+  <body ng-controller="PlayerCtrl"
+        class="player">
+    <div ng-if="loadingMessage"
+         class="loading">
+      <div class="loader"></div>
+      {{ loadingMessage }}
+    </div>
+    <div ng-if="templateUrl"
+         class="container" ng-include src="templateUrl"></div>
   </body>
 </html>
