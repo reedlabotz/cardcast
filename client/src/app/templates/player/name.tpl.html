@@ -1,1 +1,7 @@
-<input ng-model="name"><button ng-click="sendName(name)">Done</button>
+<form role="form">
+  <div class="form-group">
+    <label for="name">What's your name?</label>
+    <input type="text" class="form-control" id="name" ng-model="name">
+  </div>
+  <button ng-click="sendName(name)" class="btn btn-primary">Done</button>
+</form>
