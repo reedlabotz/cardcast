@@ -1,0 +1,17 @@
+<div class="text-center">
+  <h1>CardCast</h1>
+  <hr>
+  <button class="btn btn-primary" ng-click="startChromecast()">
+    Connect chromecast
+  </button>
+  <hr>
+  <form role="form">
+    <div class="form-group">
+      <label for="gameId">Game ID</label>
+      <input type="text" class="form-control" id="gameId" ng-model="gameId">
+    </div>
+    <button ng-click="openGame(gameId)" class="btn btn-primary">
+      Connect to game
+    </button>
+  </form>
+</div>

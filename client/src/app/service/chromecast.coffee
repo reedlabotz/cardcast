@@ -2,7 +2,7 @@ class ChromecastService
   constructor: (@apiKey) ->
     
   connect: (callback) ->
-    initializeCastApi callback
+    @initializeCastApi callback
 
   initializeReceiver: (callback) ->
     callback()
@@ -12,13 +12,13 @@ class ChromecastService
   initializeCastApi: (callback) ->
     if !chrome.cast || !chrome.cast.isAvailable
       console.log "cast not ready"
-      setTimeout () ->
-        initializeCastApi callback
+      setTimeout () =>
+        @initializeCastApi callback
       , 200
 
     sessionRequest = new chrome.cast.SessionRequest @apiKey
-    apiConfig = new chome.cast.ApiConfig sessionRequest, noop,() ->
-      receiverListener callback
+    apiConfig = new chrome.cast.ApiConfig sessionRequest, noop, () =>
+      @receiverListener callback
 
     chrome.cast.initialize apiConfig, noop, noop
 
