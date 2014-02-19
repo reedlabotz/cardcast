@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
   <head>
+    <meta name="viewport" content="width=1920, height=1080, user-scalable=no">
     <title>CardCast</title>
     <link rel="stylesheet" type="text/css" href="<%= grunt.config.get('pkg.name') %>.css"/>
     <script src="js/angular.min.js"></script>
@@ -11,20 +12,12 @@
   </head>
   <body ng-controller="HouseCtrl"
         class="house">
-    <div class="elipse"></div>
-    <div class="title">Card Cast</div>
-    <div ng-if="!loading">
-      <div class="game-id">{{ id }}</div>
-      <img class="game-qr"
-           src="https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl=http://cards.reedlabotz.com/%23game/{{ id }}">
+    <div ng-if="loadingMessage"
+         class="loading">
+      <div class="loader"></div>
+      {{ loadingMessage }}
     </div>
-    <div class="players">
-      <div class="player"
-           ng-repeat="p in players"
-           ng-if="p.name">
-        <img class="player-pic" src="{{ p.pic }}">
-        <div class="player-name">{{ p.name }}</div>
-      </div>
-    </div>
+    <div ng-if="templateUrl"
+         class="container" ng-include src="templateUrl"></div>
   </body>
 </html>

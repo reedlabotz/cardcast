@@ -3,7 +3,8 @@
 class HouseCtrl
   @$inject: ['$scope', 'chromecast', 'peer']
   constructor: (@$scope, @chromecast, @peer) ->
-    @$scope.loading = true
+    @$scope.templateUrl = 'templates/house/welcome.tpl.html';
+    @$scope.loadingMessage = "Loading..."
     @$scope.players = []
 
     @chromecast.initializeReceiver () => @setupHost()
@@ -23,8 +24,8 @@ class HouseCtrl
   peerOnOpen: () ->
     @$scope.$apply () =>
       @$scope.id = @peer.getId()
-      @$scope.loading = false
-
+      @$scope.loading = undefined
+      
   peerOnConnection: (conn) ->
     player = new Player @$scope, conn
     @$scope.$apply () =>
