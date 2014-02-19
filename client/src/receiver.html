@@ -11,18 +11,20 @@
   </head>
   <body ng-controller="HouseCtrl"
         class="house">
+    <div class="elipse"></div>
     <div class="title">Card Cast</div>
-    <img src="https://raw2.github.com/reedlabotz/euchre/master/client/src/img/cards.png" style="width: 15em">
-    <div ng-if="loading"
-         class="gameId">Loading...</div>
-    <div ng-if="!loading"
-         class="game-id">
-      http://cards.reedlabotz.com/#<strong>{{ id }}</strong>
+    <div ng-if="!loading">
+      <div class="game-id">{{ id }}</div>
+      <img class="game-qr"
+           src="https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl=http://cards.reedlabotz.com/%23game/{{ id }}">
     </div>
     <div class="players">
-      <div class="player-name"
+      <div class="player"
            ng-repeat="p in players"
-           ng-if="p.name">{{ p.name }}</div>
+           ng-if="p.name">
+        <img class="player-pic" src="{{ p.pic }}">
+        <div class="player-name">{{ p.name }}</div>
+      </div>
     </div>
   </body>
 </html>

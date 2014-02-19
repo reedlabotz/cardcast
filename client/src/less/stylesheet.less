@@ -1,5 +1,7 @@
 @green: #5cb85c;
 @darkGreen: darken(@green, 20%);
+@blue: #428bca;
+@darkBlue: darken(@blue, 20%);
 
 html, body {
   margin: 0;
@@ -10,35 +12,74 @@ html, body {
   box-sizing: border-box;
 }
 
-.house {
-  color: #fff;
-  background: -webkit-radial-gradient(center, ellipse cover, @green 0%, @darkGreen 100%);
-  text-align: center;
-  padding: 2em;
+body.house {
+  @padding: 75px;
+  background: -webkit-radial-gradient(center, ellipse cover, @blue 0%, @darkBlue 100%);
+  width: 1920px;
+  height: 1080px;
+
+  .elipse {
+    border-radius: 50%;
+    background:  url("img/cards.png") no-repeat bottom right 400px, -webkit-radial-gradient(center, ellipse cover, @green 0%, @darkGreen 100%),;
+    width: 2400px;
+    height: 1400px;
+    position: absolute;
+    top: -700px;
+    left: -300px;
+    box-shadow: inset 0 0 30px #333;
+  }
 
   .title {
-    font-size: 3em;
     font-weight: bold;
-    line-height: 2em;
+    position: absolute;
+    top: @padding;
+    left: @padding;
+    font-size: 200px;
+    color: #fff;
   }
 
   .game-id {
-    font-size: 2em;
-    line-height: 3em;
+    position: absolute;
+    color: #fff;
+    font-size: 75px;
+    bottom: @padding;
+    right: 2 * @padding + 250px;
+  }
+
+  .game-qr {
+    position: absolute;
+    bottom: @padding;
+    right: @padding;
+    box-shadow: 0 0 10px #333;
+  }
+
+  .players {
+    position: absolute;
+    bottom: 75px;
+    left: 75px;
+  }
+
+  .player {
+    display: inline-block;
+    margin-right: 50px;
+  }
+
+  .player-pic {
+    border-radius: 50%;
+    width: 125px;
+    box-shadow: 0 0 10px #333;
   }
 
   .player-name {
-    background: #fff;
-    padding: 10px;
-    font-size: 2em;
-    color: #666;
-    box-shadow: 0 0 10px 2px fade(@darkGreen, 90%);
-    display: inline-block;
-    margin: 10px;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    font-weight: lighter;
+    margin-top: 15px;
   }
 }
 
-.player {
+body.player {
   background: #eee;
   padding: 10px;
 
