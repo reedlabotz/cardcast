@@ -1,17 +1,21 @@
-<div class="text-center">
-  <h1>CardCast</h1>
-  <hr>
-  <button class="btn btn-primary" ng-click="startChromecast()">
-    Connect chromecast
-  </button>
-  <hr>
-  <form role="form">
-    <div class="form-group">
-      <label for="gameId">Game ID</label>
-      <input type="text" class="form-control" id="gameId" ng-model="gameId">
-    </div>
-    <button ng-click="openGame(gameId)" class="btn btn-primary">
-      Connect to game
+<div class="player-namespace">
+  <div class="container text-center">
+    <h1>CardCast</h1>
+    <hr>
+    <button class="btn btn-primary" ng-click="startChromecast()">
+      Connect chromecast
     </button>
-  </form>
+    <hr>
+    <form role="form">
+      <div class="form-group">
+        <label for="gameId">Game ID</label>
+        <input type="text" class="form-control" id="gameId" ng-model="gameId">
+      </div>
+      <button ng-click="openGame(gameId)" class="btn btn-primary">
+        Connect to game
+      </button>
+    </form>
+  </div>
 </div>
+<script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
+

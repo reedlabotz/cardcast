@@ -1,6 +1,6 @@
 class Message
   @types = {
-    NAME_CHANGE: 0,
-    GAME_STATUS_UPDATE: 1
+    PLAYER_DATA: 1,
+    GAME_STATUS_UPDATE: 2
   }
   constructor: (@type, @data) ->

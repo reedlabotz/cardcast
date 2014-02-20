@@ -12,7 +12,7 @@ html, body {
   box-sizing: border-box;
 }
 
-body.house {
+.house-namespace {
   @padding: 75px;
   background: -webkit-radial-gradient(center, ellipse cover, @blue 0%, @darkBlue 100%);
   width: 1920px;
@@ -41,9 +41,12 @@ body.house {
   .game-id {
     position: absolute;
     color: #fff;
-    font-size: 75px;
-    bottom: @padding;
-    right: 2 * @padding + 250px;
+    font-size: 45px;
+    bottom: @padding + 250px + 10px;
+    right: @padding;
+    width: 250px;
+    text-align: center;
+    font-weight: lighter;
   }
 
   .game-qr {
@@ -79,9 +82,10 @@ body.house {
   }
 }
 
-body.player {
+.player-namespace {
   background: #eee;
   padding: 10px;
+  height: 100%;
 
   .loading {
     background: @green;

@@ -1,0 +1,10 @@
+<div class="house-namespace">
+  <div ng-if="loadingMessage"
+       class="loading">
+    <div class="loader"></div>
+    {{ loadingMessage }}
+  </div>
+  <div ng-if="templateUrl"
+       class="container" ng-include src="templateUrl"></div>
+</div>
+<script src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>

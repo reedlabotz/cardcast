@@ -5,6 +5,7 @@ class HouseCtrl
   constructor: (@$scope, @chromecast, @peer) ->
     @$scope.templateUrl = 'templates/house/welcome.tpl.html';
     @$scope.loadingMessage = "Loading..."
+    @$scope.playerConnections = []
     @$scope.players = []
 
     @chromecast.initializeReceiver () => @setupHost()
@@ -29,7 +30,7 @@ class HouseCtrl
   peerOnConnection: (conn) ->
     player = new Player @$scope, conn
     @$scope.$apply () =>
-      @$scope.players.push player
+      @$scope.playerConnections.push player
 
   checkReady: () ->
     console.log 'check ready', @$scope.players, (p for p in @$scope.players when p.ready())
