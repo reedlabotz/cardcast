@@ -5,6 +5,7 @@
 #<< cardcast/service/chromecast
 #<< cardcast/service/peer
 #<< cardcast/service/googleplus
+#<< cardcast/model/house
 
 CHROMECAST_API_KEY = '17F0F24F'
 PEERJS_API_KEY = 'z5y7lsci3p4lsor'
@@ -23,8 +24,9 @@ app.controller 'HouseCtrl', HouseCtrl
 Services
 ###
 app.service 'chromecast', () -> new ChromecastService CHROMECAST_API_KEY
-app.service 'peer', () -> new PeerService PEERJS_API_KEY
-app.service 'googleplus', ['$http', ($http) -> new GooglePlusService $http ]
+app.service 'peer', ['$rootScope', ($rootScope) -> new PeerService $rootScope, PEERJS_API_KEY ]
+app.service 'googleplus', () -> new GooglePlusService()
+app.service 'housemodel', () -> new HouseModel()
 
 ###
 Routes

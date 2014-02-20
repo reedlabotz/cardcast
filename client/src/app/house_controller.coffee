@@ -1,36 +1,28 @@
-#<< cardcast/player
+#<< cardcast/model/player
+#<< cardcast/model/house
 
 class HouseCtrl
-  @$inject: ['$scope', 'chromecast', 'peer']
-  constructor: (@$scope, @chromecast, @peer) ->
-    @$scope.templateUrl = 'templates/house/welcome.tpl.html';
-    @$scope.loadingMessage = "Loading..."
-    @$scope.playerConnections = []
-    @$scope.players = []
-
+  @$inject: ['$scope', 'chromecast', 'peer', 'housemodel']
+  constructor: (@$scope, @chromecast, @peer, @model) ->
+    # Setup the basic scope
+    @$scope.model = @model
+    # Start the app
+    @statusChange()
     @chromecast.initializeReceiver () => @setupHost()
 
   setupHost: () ->
-    possible = "ABCDEFGHJKLMNPQRSTUVWXYZ123456789"
-    peerId = ""
-    for i in [0..4]
-      peerId += possible.charAt Math.floor (Math.random() * possible.length)
-
-    @$scope.$on 'playerChange', () => @checkReady()
     @peer.start {
-      onOpen: () => @peerOnOpen(),
-      onConnection: (conn) => @peerOnConnection(conn)
-    }, peerId
+      onOpen: () => @model.peerOnOpen(),
+      onConnection: (conn) => @model.peerOnConnection(conn)
+    }, @model.getGameId()
 
-  peerOnOpen: () ->
-    @$scope.$apply () =>
-      @$scope.id = @peer.getId()
-      @$scope.loading = undefined
-      
-  peerOnConnection: (conn) ->
-    player = new Player @$scope, conn
-    @$scope.$apply () =>
-      @$scope.playerConnections.push player
-
-  checkReady: () ->
-    console.log 'check ready', @$scope.players, (p for p in @$scope.players when p.ready())
+  statusChange: () ->
+    switch @model.status
+      when HouseModel.Status.LOADING
+        console.log 'in loading state'
+        @$scope.loadingMessage = 'Loading...'
+        @$scope.templateUrl = 'templates/house/welcome.tpl.html'
+      when HouseModel.Status.WAITING_FOR_PLAYERS
+        console.log 'in waiting state'
+        @$scope.loadingMessage = 'Loading...'
+        @$scope.templateUrl = 'templates/house/welcome.tpl.html'

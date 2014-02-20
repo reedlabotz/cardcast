@@ -1,11 +1,14 @@
 #<< cardcast/message
 
-class Player
-  constructor: (@$scope, @conn) ->
+class PlayerModel
+  constructor: (@conn) ->
     @conn.setHandler @
     @id;
     @name
     @pic;
+    @_readyCallback
+
+  setReadyCallback: (@_readyCallback) ->
 
   onData: (message) ->
     switch message.type
@@ -13,5 +16,8 @@ class Player
         @name = message.data.name
         @id = message.data.id
         @pic = message.data.pic
-        @$scope.$apply () =>
-          @$scope.players.push @
+        @_readyCallback?(@)
+
+  replace: (player) ->
+    @conn = player.conn
+    @conn.setHandler @

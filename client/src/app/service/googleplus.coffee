@@ -1,5 +1,5 @@
 class GooglePlusService
-  constructor: (@$http) ->
+  constructor: () ->
 
   addButton: (id, callbackName, callback) ->
     window.renderGButton = () => @render id

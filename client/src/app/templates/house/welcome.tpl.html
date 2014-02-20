@@ -1,14 +1,13 @@
 <div class="elipse"></div>
 <div class="title">Card Cast</div>
 <div ng-if="!loading">
-  <div class="game-id">{{ id }}</div>
+  <div class="game-id">{{ model.getGameId() }}</div>
   <img class="game-qr"
-       src="https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl=http://cards.reedlabotz.com/%23game/{{ id }}">
+       src="https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl=http://cards.reedlabotz.com/%23game/{{ model.getGameId() }}">
 </div>
 <div class="players">
   <div class="player"
-       ng-repeat="p in players"
-       ng-if="p.name">
+       ng-repeat="p in model.players">
     <img class="player-pic" src="{{ p.pic }}&sz=125">
     <div class="player-name">{{ p.name }}</div>
   </div>
