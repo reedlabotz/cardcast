@@ -8,9 +8,7 @@ class HouseModel
   }
 
   constructor: () ->
-    @connections = []
     @players = []
-    @conn
     @gameId
     @status = HouseModel.Status.LOADING
 
@@ -22,19 +20,24 @@ class HouseModel
         @gameId += possible.charAt Math.floor (Math.random() * possible.length)
     return @gameId
 
-  peerOnOpen: () ->
-    console.log 'peer opened'
-    @status = HouseModel.Status.WAITING_FOR_PLAYERS
-
-  peerOnConnection: (conn) ->
-    player = new PlayerModel conn
-    player.setReadyCallback (player) => @playerReady player
-    @connections.push player
-
-  playerReady: (player) ->
+  getPlayer: (id) ->
     for p in @players
-      if player.id == p.id
-        p.replace player
-        return
-    @players.push player
+      if p.id == id
+        return p
+    return undefined
+
+  playerUpdate: (data) ->
+    switch data.type
+      when 'new'
+        @players.push new PlayerModel data.payload
+      when 'dead'
+        player = @getPlayer data.from
+        player.setDead true
+      when 'alive'
+        player = @getPlayer data.from
+        player.setDead false
+
+  message: (data) ->
+    player = @getPlayer data.from
+    player.message data.payload
 

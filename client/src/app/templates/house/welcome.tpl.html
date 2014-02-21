@@ -7,7 +7,8 @@
 </div>
 <div class="players">
   <div class="player"
-       ng-repeat="p in model.players">
+       ng-repeat="p in model.players"
+       ng-class="{dead: p.dead}">
     <img class="player-pic" src="{{ p.pic }}&sz=125">
     <div class="player-name">{{ p.name }}</div>
   </div>

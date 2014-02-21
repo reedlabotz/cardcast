@@ -1,23 +1,13 @@
 #<< cardcast/message
 
 class PlayerModel
-  constructor: (@conn) ->
-    @conn.setHandler @
-    @id;
-    @name
-    @pic;
-    @_readyCallback
+  constructor: (data) ->
+    @id = data.id
+    @name = data.name
+    @pic = data.pic
+    @dead = false
 
-  setReadyCallback: (@_readyCallback) ->
+  message: (message) ->
 
-  onData: (message) ->
-    switch message.type
-      when Message.types.PLAYER_DATA
-        @name = message.data.name
-        @id = message.data.id
-        @pic = message.data.pic
-        @_readyCallback?(@)
-
-  replace: (player) ->
-    @conn = player.conn
-    @conn.setHandler @
+  setDead: (value) ->
+    @dead = value

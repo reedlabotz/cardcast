@@ -1,0 +1,26 @@
+{
+  "author": "RJ & Reed",
+  "name": "cardcast-server",
+  "homepage": "https://github.com/reedlabotz/cardcast",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:reedlabotz/cardcast.git"
+  },
+  "bugs": {
+    "url": "https://github.com/reedlabotz/cardcast/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/reedlabotz/cardcast/master/LICENSE"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.4"
+  },
+  "dependencies": {
+    "socket.io": "~0.9.6",
+    "coffee-script": "~1.7.1"
+  }
+}

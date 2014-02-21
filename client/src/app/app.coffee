@@ -3,12 +3,12 @@
 #<< cardcast/welcome_controller
 #<< cardcast/house_controller
 #<< cardcast/service/chromecast
-#<< cardcast/service/peer
+#<< cardcast/service/socketio
 #<< cardcast/service/googleplus
 #<< cardcast/model/house
 
 CHROMECAST_API_KEY = '17F0F24F'
-PEERJS_API_KEY = 'z5y7lsci3p4lsor'
+SOCKET_IO_SERVER = "http://cards.reedlabotz.com"
 
 app = angular.module 'app', ['ngRoute', 'templates.app']
 
@@ -24,7 +24,7 @@ app.controller 'HouseCtrl', HouseCtrl
 Services
 ###
 app.service 'chromecast', () -> new ChromecastService CHROMECAST_API_KEY
-app.service 'peer', ['$rootScope', ($rootScope) -> new PeerService $rootScope, PEERJS_API_KEY ]
+app.service 'socketio', ['$rootScope', ($rootScope) -> new SocketIOService $rootScope, SOCKET_IO_SERVER ]
 app.service 'googleplus', () -> new GooglePlusService()
 app.service 'housemodel', () -> new HouseModel()
 

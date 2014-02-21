@@ -2,8 +2,8 @@
 #<< cardcast/model/house
 
 class HouseCtrl
-  @$inject: ['$scope', 'chromecast', 'peer', 'housemodel']
-  constructor: (@$scope, @chromecast, @peer, @model) ->
+  @$inject: ['$scope', 'chromecast', 'socketio', 'housemodel']
+  constructor: (@$scope, @chromecast, @socketio, @model) ->
     # Setup the basic scope
     @$scope.model = @model
     # Start the app
@@ -11,11 +11,11 @@ class HouseCtrl
     @chromecast.initializeReceiver () => @setupHost()
 
   setupHost: () ->
-    @peer.start {
-      onOpen: () => @model.peerOnOpen(),
-      onConnection: (conn) => @model.peerOnConnection(conn)
-    }, @model.getGameId()
-
+    @socketio.start () =>
+      @socketio.emit 'register', {id: @model.getGameId()}
+      @socketio.on 'player', (data) => @model.playerUpdate(data)
+      @socketio.on 'msg', (data) => @model.message(data)
+  
   statusChange: () ->
     switch @model.status
       when HouseModel.Status.LOADING
