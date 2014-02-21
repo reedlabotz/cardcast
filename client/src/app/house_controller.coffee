@@ -20,9 +20,7 @@ class HouseCtrl
     switch @model.status
       when HouseModel.Status.LOADING
         console.log 'in loading state'
-        @$scope.loadingMessage = 'Loading...'
         @$scope.templateUrl = 'templates/house/welcome.tpl.html'
       when HouseModel.Status.WAITING_FOR_PLAYERS
         console.log 'in waiting state'
-        @$scope.loadingMessage = 'Loading...'
         @$scope.templateUrl = 'templates/house/welcome.tpl.html'

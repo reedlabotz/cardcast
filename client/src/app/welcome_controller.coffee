@@ -1,6 +1,6 @@
 class WelcomeCtrl
-  @inject: ['$scope', '$location']
-  constructor: (@$scope, @$location) ->
+  @inject: ['$scope', '$location', 'chromecast']
+  constructor: (@$scope, @$location, @chromecast) ->
     @$scope.openGame = (gameId) =>
       @$location.path '/game/' + gameId
     @$scope.startChromecast = () =>

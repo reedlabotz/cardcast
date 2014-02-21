@@ -1,4 +1,5 @@
 #<< cardcast/model/player
+#<< cardcast/games/hearts/house
 
 class HouseModel
   @Status = {
@@ -11,6 +12,7 @@ class HouseModel
     @players = []
     @gameId
     @status = HouseModel.Status.LOADING
+    @gameModel = new HeartsHouseModel @players
 
   getGameId: () ->
     if !@gameId?
@@ -30,6 +32,8 @@ class HouseModel
     switch data.type
       when 'new'
         @players.push new PlayerModel data.payload
+        if @gameModel.ready()
+          @gameModel.startGame()
       when 'dead'
         player = @getPlayer data.from
         player.setDead true

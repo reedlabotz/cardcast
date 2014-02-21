@@ -47,7 +47,7 @@ class Game
 
 registerGame = (id, houseSocket) ->
   if games[id]?
-    game[id].replaceSocket houseSocket
+    games[id].replaceSocket houseSocket
     return
   game = new Game id, houseSocket
   games[id] = game
