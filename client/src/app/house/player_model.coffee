@@ -1,5 +1,3 @@
-#<< cardcast/message
-
 class PlayerModel
   constructor: (data) ->
     @id = data.id

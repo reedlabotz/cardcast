@@ -1,5 +1,4 @@
-#<< cardcast/model/player
-#<< cardcast/model/house
+#<< cardcast/house/model
 
 class HouseCtrl
   @$inject: ['$scope', 'chromecast', 'socketio', 'housemodel']
@@ -20,7 +19,7 @@ class HouseCtrl
     switch @model.status
       when HouseModel.Status.LOADING
         console.log 'in loading state'
-        @$scope.templateUrl = 'templates/house/welcome.tpl.html'
+        @$scope.templateUrl = 'house/welcome.tpl.html'
       when HouseModel.Status.WAITING_FOR_PLAYERS
         console.log 'in waiting state'
-        @$scope.templateUrl = 'templates/house/welcome.tpl.html'
+        @$scope.templateUrl = 'house/welcome.tpl.html'

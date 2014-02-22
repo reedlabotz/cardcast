@@ -1,4 +1,4 @@
-class WelcomeCtrl
+class PlayerWelcomeCtrl
   @inject: ['$scope', '$location', 'chromecast']
   constructor: (@$scope, @$location, @chromecast) ->
     @$scope.openGame = (gameId) =>

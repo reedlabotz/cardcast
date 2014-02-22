@@ -1,4 +1,4 @@
-#<< cardcast/model/player
+#<< cardcast/house/player_model
 #<< cardcast/games/hearts/house
 
 class HouseModel

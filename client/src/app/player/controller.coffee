@@ -1,10 +1,10 @@
-#<< cardcast/message
+#<< cardcast/util/message
 
 class PlayerCtrl
   @$inject: ['$scope', '$location', '$routeParams', 'socketio', 'googleplus']
   constructor: (@$scope, @$location, @$routeParams, @socketio, @googleplus) ->
     @gameId = @$routeParams.gameId.toUpperCase()
-    @$scope.templateUrl = 'templates/player/login.tpl.html'
+    @$scope.templateUrl = 'player/login.tpl.html'
     @googleplus.addButton 'signinButton', 'signinCallback', (userData) => @signedIn(userData)
     
   signedIn: (userData) ->

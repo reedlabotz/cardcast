@@ -1,4 +1,4 @@
-#<< cardcast/model/deck
+#<< cardcast/util/deck
 
 class HeartsHouseModel
   constructor: (@players) ->

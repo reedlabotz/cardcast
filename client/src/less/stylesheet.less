@@ -13,7 +13,7 @@ html, body {
 }
 
 .house-namespace {
-  @padding: 75px;
+  @padding: 5vw;
   background: -webkit-radial-gradient(center, ellipse cover, @green 0%, @darkGreen 100%);
   width: 100%; //1080
   height: 100%; //1920
@@ -23,22 +23,24 @@ html, body {
     position: absolute;
     top: @padding;
     left: @padding;
-    font-size: 200px;
+    font-size: 10vw;
+    line-height: 1;
     color: #fff;
   }
 
   .game-id {
     position: absolute;
     color: #fff;
-    font-size: 45px;
-    bottom: @padding + 250px + 10px;
+    font-size: 2vw;
+    bottom: @padding + 8vw + 1vw;
     right: @padding;
-    width: 250px;
+    width: 8vw;
     text-align: center;
     font-weight: lighter;
   }
 
   .game-qr {
+    width: 8vw;
     position: absolute;
     bottom: @padding;
     right: @padding;
@@ -47,13 +49,14 @@ html, body {
 
   .players {
     position: absolute;
-    bottom: 75px;
-    left: 75px;
+    bottom: @padding;
+    left: @padding;
+    width: 75vw;
   }
 
   .player {
     display: inline-block;
-    margin-right: 50px;
+    margin-right: 1.5vw;
     transition: all 0.5s linear;
 
     &.dead {
@@ -63,16 +66,16 @@ html, body {
 
   .player-pic {
     border-radius: 50%;
-    width: 125px;
+    width: 7vw;
     box-shadow: 0 0 10px #333;
   }
 
   .player-name {
     text-align: center;
     color: #fff;
-    font-size: 24px;
+    font-size: 2vw;
     font-weight: lighter;
-    margin-top: 15px;
+    margin-top: 1vw;
   }
 }
 
