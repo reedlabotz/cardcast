@@ -3,10 +3,6 @@
 <img class="game-qr"
      ng-src="https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl=http://cards.reedlabotz.com/%23game/{{ model.getGameId() }}">
 <div class="players">
-  <div class="player"
-       ng-repeat="p in model.players"
-       ng-class="{dead: p.dead}">
-    <img class="player-pic" ng-src="{{ p.pic }}&sz=125">
-    <div class="player-name">{{ p.name }}</div>
-  </div>
+  <player ng-repeat="p in model.players"
+          player="p"></player>
 </div>

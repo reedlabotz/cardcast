@@ -4,7 +4,8 @@ class SocketIOService
   start: (callback) ->
     @socket = io.connect @server
     @socket.on 'connect', () =>
-      callback()
+      @$rootScope.$apply () =>
+        callback()
 
   on: (eventName, callback) ->
     @socket.on eventName, () =>

@@ -1,3 +1,6 @@
+#<< cardcast/shared/directives/module
+#<< cardcast/games/cribbage/module
+
 #<< cardcast/controller
 #<< cardcast/player/controller
 #<< cardcast/player/welcome_controller
@@ -5,12 +8,17 @@
 #<< cardcast/service/chromecast
 #<< cardcast/service/socketio
 #<< cardcast/service/googleplus
-#<< cardcast/house/model
+
+
 
 CHROMECAST_API_KEY = '17F0F24F'
 SOCKET_IO_SERVER = "http://cards.reedlabotz.com"
 
-app = angular.module 'app', ['ngRoute', 'templates.app']
+app = angular.module 'cardcast', [
+  'ngRoute',
+  'templates.app',
+  'cardcast.shared.directives',
+  'cardcast.games.cribbage']
 
 ###
 Controllers
@@ -18,7 +26,6 @@ Controllers
 app.controller 'AppCtrl', AppCtrl
 app.controller 'PlayerWelcomeCtrl', PlayerWelcomeCtrl
 app.controller 'PlayerCtrl', PlayerCtrl
-app.controller 'HouseCtrl', HouseCtrl
 
 ###
 Services
@@ -42,7 +49,7 @@ app.config ['$routeProvider', ($routeProvider) ->
   }
   $routeProvider.when '/house', {
     templateUrl: 'house/main.tpl.html',
-    controller: 'HouseCtrl'
+    controller: 'HouseWelcomeCtrl'
   }
   $routeProvider.otherwise {
     redirectTo: '/welcome'

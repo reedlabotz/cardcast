@@ -14,4 +14,5 @@ class PlayerCtrl
       @$scope.templateUrl = undefined
 
     @socketio.start () =>
-      @socketio.emit 'join', {id: @gameId, player: @playerData}    
+      @socketio.emit 'join', {id: @gameId, player: @playerData}
+      @init()

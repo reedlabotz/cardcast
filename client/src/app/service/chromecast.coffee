@@ -5,6 +5,15 @@ class ChromecastService
     @initializeCastApi callback
 
   initializeReceiver: (callback) ->
+    if !cast? || !cast.receiver?
+      console.log 'cast not ready'
+      setTimeout () =>
+        @initializeReceiver callback
+      , 500
+      return
+      
+    window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance()
+    window.castReceiverManager.start()
     callback()
 
   noop = () ->

@@ -5,21 +5,14 @@ class HouseCtrl
   constructor: (@$scope, @chromecast, @socketio, @model) ->
     # Setup the basic scope
     @$scope.model = @model
+    @init()
+
+  init: () ->
     # Start the app
-    @statusChange()
+    @$scope.templateUrl = 'house/welcome.tpl.html'
     @chromecast.initializeReceiver () => @setupHost()
 
   setupHost: () ->
     @socketio.start () =>
       @socketio.emit 'register', {id: @model.getGameId()}
-      @socketio.on 'player', (data) => @model.playerUpdate(data)
-      @socketio.on 'msg', (data) => @model.message(data)
-  
-  statusChange: () ->
-    switch @model.status
-      when HouseModel.Status.LOADING
-        console.log 'in loading state'
-        @$scope.templateUrl = 'house/welcome.tpl.html'
-      when HouseModel.Status.WAITING_FOR_PLAYERS
-        console.log 'in waiting state'
-        @$scope.templateUrl = 'house/welcome.tpl.html'
+      @$scope.model.init @socketio, @$scope

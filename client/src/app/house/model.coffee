@@ -1,18 +1,15 @@
 #<< cardcast/house/player_model
-#<< cardcast/games/hearts/house
 
 class HouseModel
-  @Status = {
-    LOADING: 1,
-    CONNECTING: 2,
-    WAITING_FOR_PLAYERS: 3,
-  }
-
   constructor: () ->
     @players = []
     @gameId
-    @status = HouseModel.Status.LOADING
-    @gameModel = new HeartsHouseModel @players
+
+  init: (@socketio, @$scope) ->
+    @socketio.on 'player', (data) =>
+      @$scope.$emit 'playerUpdate'
+      @playerUpdate(data)
+    @socketio.on 'msg', (data) => @message(data)
 
   getGameId: () ->
     if !@gameId?
@@ -31,9 +28,7 @@ class HouseModel
   playerUpdate: (data) ->
     switch data.type
       when 'new'
-        @players.push new PlayerModel data.payload
-        if @gameModel.ready()
-          @gameModel.startGame()
+        @players.push new PlayerModel data.payload, @socketio
       when 'dead'
         player = @getPlayer data.from
         player.setDead true

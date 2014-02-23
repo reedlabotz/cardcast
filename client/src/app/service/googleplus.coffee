@@ -3,11 +3,8 @@ class GooglePlusService
 
   addButton: (id, callbackName, callback) ->
     window.renderGButton = () => @render id
-    called = false
-    window[callbackName] = (data) =>
-      if !called
-        called = true
-        @signedIn(data, callback)
+    @called = false
+    window[callbackName] = (data) => @signedIn(data, callback)
       
     `(function() {
         var po = document.createElement('script');
@@ -28,9 +25,12 @@ class GooglePlusService
         callback: (data) => @lookupCallback data, callback
       }
     else
-      console.error 'Error loggin in', data
+      console.error 'Error logging in', data
 
   lookupCallback: (data, callback) ->
+    if @called
+      return
+    @called = true
     callback {
       id: data.id,
       name: data.name.givenName,
